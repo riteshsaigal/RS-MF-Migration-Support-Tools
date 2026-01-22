@@ -1,5 +1,5 @@
 # Mongosync Insights - Core Dependencies
-# Python 3.10+ required
+# Python 3.11+ required
 
 # Web Framework
 Flask==3.1.1
@@ -23,6 +23,9 @@ six==1.16.0
 
 # File Processing
 python-magic==0.4.27
+
+# HTTP Requests
+requests==2.32.3
 
 # Progress Bars
 tqdm==4.66.3
