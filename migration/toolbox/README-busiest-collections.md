@@ -7,7 +7,7 @@ Gets the busiest collections in terms of writes (inserts/updates/deletes) as rec
 ### Usage
 
 ```bash
-node get-busiest-collections.js </path/to/log/files-or-directory> [--markdown] [--no-console]
+node get-busiest-collections.js </path/to/mongosynclog/files-or-directory> [--markdown] [--no-console]
 ```
 
 
