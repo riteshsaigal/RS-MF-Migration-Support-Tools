@@ -50,9 +50,6 @@ async function processFiles(filePaths) {
   const namespaceSummary = {};
   const eventTypesSet = new Set(); // To keep track of all event types (e.g., "insert", "update", etc.)
   const MAX_LINES_PER_FILE = 5000000; // Optional safeguard for very large files
-  let firstTimestamp = null;
-  let lastTimestamp = null;
-
   for (const filePath of filePaths) {
     if (!suppressConsole) {
       console.log(`Processing file: ${filePath}`);
@@ -83,13 +80,6 @@ async function processFiles(filePaths) {
 
         // Check if the message field matches
         if (jsonObj.message === 'Recent CRUD change event statistics.') {
-          // Track the first and last timestamp from matching log entries
-          const ts = jsonObj.time || jsonObj.t || jsonObj.timestamp || null;
-          if (ts) {
-            if (!firstTimestamp) firstTimestamp = ts;
-            lastTimestamp = ts;
-          }
-
           const busiestCollections = jsonObj.recentCRUDStatistics?.busiestCollections || [];
 
           // Loop through busiestCollections to summarize namespaces
@@ -151,10 +141,7 @@ async function processFiles(filePaths) {
   // Output the sorted result in a readable column format
   if (!suppressConsole) {
     console.log('\n# Namespace Statistics\n');
-    console.log('# Sorted by descending total number of write operations during the Change Event Application (CEA) phase.\n');
-    if (firstTimestamp || lastTimestamp) {
-      console.log(`# Time range: ${firstTimestamp || 'N/A'}  -->  ${lastTimestamp || 'N/A'}\n`);
-    }
+    console.log('# Sorted by descending total number of write operations\n');
 
     // Format and print the header
     const headerNamespace = 'Namespace'.padEnd(columnWidthNamespace);
@@ -190,7 +177,7 @@ async function processFiles(filePaths) {
 
   // If --markdown flag is provided, generate Markdown output
   if (outputAsMarkdown) {
-    const markdownOutput = generateMarkdown(summarizedData, eventTypes, columnWidthNamespace, columnWidthEvents, columnWidthsByType, firstTimestamp, lastTimestamp);
+    const markdownOutput = generateMarkdown(summarizedData, eventTypes, columnWidthNamespace, columnWidthEvents, columnWidthsByType);
     const markdownPath = 'busiest_collections.md';
     try {
       fs.writeFileSync(markdownPath, markdownOutput);
@@ -204,12 +191,9 @@ async function processFiles(filePaths) {
 }
 
 // Function to generate Markdown output
-function generateMarkdown(data, eventTypes, columnWidthNamespace, columnWidthEvents, columnWidthsByType, firstTimestamp, lastTimestamp) {
+function generateMarkdown(data, eventTypes, columnWidthNamespace, columnWidthEvents, columnWidthsByType) {
   let markdown = `# Namespace Statistics\n\n`;
-  markdown += `# Sorted by descending total number of write operations during the Change Event Application (CEA) phase.\n\n`;
-  if (firstTimestamp || lastTimestamp) {
-    markdown += `# Time range: ${firstTimestamp || 'N/A'}  -->  ${lastTimestamp || 'N/A'}\n\n`;
-  }
+  markdown += `# Sorted by descending total number of write operations\n\n`;
   
   // Use dynamic column widths for consistent alignment
   const headerNamespace = 'Namespace'.padEnd(columnWidthNamespace);

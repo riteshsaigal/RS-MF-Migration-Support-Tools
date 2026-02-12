@@ -1,0 +1,47 @@
+[
+  {
+    "namespace": "m312.test2",
+    "totalEvents": 7306,
+    "totalEventsPerType": {
+      "delete": 2429,
+      "insert": 2419,
+      "update": 2458
+    }
+  },
+  {
+    "namespace": "m312.test5",
+    "totalEvents": 7289,
+    "totalEventsPerType": {
+      "delete": 2456,
+      "insert": 2438,
+      "update": 2395
+    }
+  },
+  {
+    "namespace": "m312.test1",
+    "totalEvents": 7253,
+    "totalEventsPerType": {
+      "delete": 2476,
+      "insert": 2450,
+      "update": 2327
+    }
+  },
+  {
+    "namespace": "m312.test4",
+    "totalEvents": 7176,
+    "totalEventsPerType": {
+      "delete": 2414,
+      "insert": 2386,
+      "update": 2376
+    }
+  },
+  {
+    "namespace": "m312.test3",
+    "totalEvents": 7076,
+    "totalEventsPerType": {
+      "delete": 2352,
+      "insert": 2360,
+      "update": 2364
+    }
+  }
+]

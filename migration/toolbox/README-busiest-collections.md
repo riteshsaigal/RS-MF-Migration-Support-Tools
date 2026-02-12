@@ -1,69 +1,28 @@
-# Toolbox
-Toolbox is a collection of scripts created by the Migration Factory team
-
 ## Get busiest collections seen during Collection Copy and Change Event Application (CEA) phase
 
-**Script:** `collectionSizes.js`
+**Script:** `get-busiest-collections.js`
 
-Lists all databases and collections (excluding system databases: `admin`, `config`, `local`) with their sizes in MB, sorted from largest to smallest.
-
-### Usage
-
-```bash
-mongosh "mongodb://localhost:27017" --quiet collectionSizes.js
-```
-
-Or with authentication:
-
-```bash
-mongosh "mongodb://user:password@localhost:27017" --quiet collectionSizes.js
-```
-
-### Example Output
-
-```
-Database | Collection | Size (MB)
----------------------------------
-mydb | largeCollection | 1024.50 MB
-mydb | mediumCollection | 256.25 MB
-otherdb | smallCollection | 12.00 MB
-```
-
-## Index size, parameters and utilization
-
-**Script:** `probIndexesComplete.js`
-
-Collects index statistics across all user databases (excluding `admin`, `config`, `local`). For each index, it reports:
-- Database and collection name
-- Index name and type (common, TTL, Partial, text, 2dsphere, geoHaystack, or `[INTERNAL]` for `_id_`)
-- Whether the index is unique
-- Access count (ops) and when tracking started
-- Index size in MB and bytes
+Gets the busiest collections in terms of writes (inserts/updates/deletes) as recorded in the mongosync logs
 
 ### Usage
 
 ```bash
-mongosh "mongodb://localhost:27017" --quiet probIndexesComplete.js
+node get-busiest-collections.js </path/to/log/files-or-directory> [--markdown] [--no-console]
 ```
 
-Or with authentication:
-
-```bash
-mongosh "mongodb://user:password@localhost:27017" --quiet probIndexesComplete.js
-```
 
 ### Example Output
 
 ```
-┌─────────┬────────┬────────────────┬──────────────┬────────────┬────────┬──────────┬──────────┬─────────┬─────────────────────────┐
-│ (index) │ db     │ collection     │ name         │ type       │ unique │ accesses │ size (MB)│ size    │ accesses_since          │
-├─────────┼────────┼────────────────┼──────────────┼────────────┼────────┼──────────┼──────────┼─────────┼─────────────────────────┤
-│ 0       │ mydb   │ users          │ _id_         │ [INTERNAL] │        │ 150      │ 0.25     │ 262144  │ 2024-01-15T10:30:00.000Z│
-│ 1       │ mydb   │ users          │ email_1      │ common     │ true   │ 1200     │ 0.12     │ 126976  │ 2024-01-15T10:30:00.000Z│
-│ 2       │ mydb   │ sessions       │ _id_         │ [INTERNAL] │        │ 50       │ 0.08     │ 81920   │ 2024-01-15T10:30:00.000Z│
-│ 3       │ mydb   │ sessions       │ expireAt_1   │ TTL        │        │ 0        │ 0.04     │ 40960   │ 2024-01-15T10:30:00.000Z│
-└─────────┴────────┴────────────────┴──────────────┴────────────┴────────┴──────────┴──────────┴─────────┴─────────────────────────┘
+Namespace                        |   Total Write Ops |     delete |     insert |     update
+-------------------------------- | ----------------- | ---------- | ---------- | ----------
+db0.test2                        |             7,306 |      2,429 |      2,419 |      2,458
+db0.test5                        |             7,289 |      2,456 |      2,438 |      2,395
+db0.test1                        |             7,253 |      2,476 |      2,450 |      2,327
+db0.test4                        |             7,176 |      2,414 |      2,386 |      2,376
+db0.test3                        |             7,076 |      2,352 |      2,360 |      2,364
 ```
+
 
 ### License
 
