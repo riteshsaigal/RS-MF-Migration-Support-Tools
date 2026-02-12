@@ -2,7 +2,7 @@
 
 **Script:** `get-busiest-collections.js`
 
-Gets the busiest collections in terms of writes (inserts/updates/deletes) as recorded in the mongosync logs
+Gets the busiest collections in terms of writes (inserts/updates/deletes) as recorded in the mongosync logs during the CEA phase
 
 ### Usage
 

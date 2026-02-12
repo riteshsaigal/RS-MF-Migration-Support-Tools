@@ -1,0 +1,116 @@
+[
+  {
+    "namespace": "m312.test2",
+    "totalEvents": 23775,
+    "totalEventsPerType": {
+      "delete": 7902,
+      "insert": 7923,
+      "update": 7950
+    }
+  },
+  {
+    "namespace": "m312.test5",
+    "totalEvents": 23655,
+    "totalEventsPerType": {
+      "delete": 7911,
+      "insert": 7903,
+      "update": 7841
+    }
+  },
+  {
+    "namespace": "m312.test4",
+    "totalEvents": 23592,
+    "totalEventsPerType": {
+      "delete": 7904,
+      "insert": 7888,
+      "update": 7800
+    }
+  },
+  {
+    "namespace": "m312.test1",
+    "totalEvents": 23577,
+    "totalEventsPerType": {
+      "delete": 7871,
+      "insert": 7866,
+      "update": 7840
+    }
+  },
+  {
+    "namespace": "m312.test3",
+    "totalEvents": 23518,
+    "totalEventsPerType": {
+      "delete": 7844,
+      "insert": 7850,
+      "update": 7824
+    }
+  },
+  {
+    "namespace": "db0.test1",
+    "totalEvents": 5416,
+    "totalEventsPerType": {
+      "delete": 1576,
+      "insert": 2251,
+      "update": 1589
+    }
+  },
+  {
+    "namespace": "db0.test2",
+    "totalEvents": 5372,
+    "totalEventsPerType": {
+      "delete": 1579,
+      "insert": 2250,
+      "update": 1543
+    }
+  },
+  {
+    "namespace": "db0.test3",
+    "totalEvents": 5325,
+    "totalEventsPerType": {
+      "delete": 1553,
+      "insert": 2224,
+      "update": 1548
+    }
+  },
+  {
+    "namespace": "db0.test5",
+    "totalEvents": 5323,
+    "totalEventsPerType": {
+      "insert": 2204,
+      "update": 1565,
+      "delete": 1554
+    }
+  },
+  {
+    "namespace": "db0.test4",
+    "totalEvents": 5294,
+    "totalEventsPerType": {
+      "insert": 2200,
+      "update": 1558,
+      "delete": 1536
+    }
+  },
+  {
+    "namespace": "m312.test",
+    "totalEvents": 276,
+    "totalEventsPerType": {
+      "delete": 26,
+      "insert": 218,
+      "update": 32
+    }
+  },
+  {
+    "namespace": "m312.foo",
+    "totalEvents": 202,
+    "totalEventsPerType": {
+      "delete": 46,
+      "insert": 156
+    }
+  },
+  {
+    "namespace": "db0.test6",
+    "totalEvents": 14,
+    "totalEventsPerType": {
+      "insert": 14
+    }
+  }
+]
